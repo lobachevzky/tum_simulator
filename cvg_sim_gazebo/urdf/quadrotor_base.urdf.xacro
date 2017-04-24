@@ -34,6 +34,17 @@ xmlns:xacro="http://ros.org/wiki/xacro">
 
     <gazebo reference="base_link">
       <turnGravityOff>false</turnGravityOff>
+      <sensor name="base_contact" type="contact" update_rate="10.0">
+        <contact>
+          <collision>base_link_collision</collision>
+        </contact>
+        <plugin name="bumper" filename="libgazebo_ros_bumper.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>50.0</updateRate>
+          <frameName>world</frameName>
+          <bumperTopicName>ardrone_crash_bumper</bumperTopicName>
+        </plugin>
+      </sensor>
     </gazebo>
 
     <!-- Gazebo Plugins -->
